@@ -5,7 +5,7 @@ bl_info = {
     "name": "Hotkey Focus Alt",
     "author": "chromeoculi",
     "description": "Adds an alternative 'focus' function, without zoom.",
-    "version": (1, 1, 0),
+    "version": (1, 2, 0),
     "location": "View3D",
     "category": "3D View",
     "warning": "This does not set any default keybinds. You will need to change your \
@@ -21,8 +21,8 @@ class VIEW3D_OT_focus_alt_snap(bpy.types.Operator):
     bl_options = {"REGISTER"}
 
     def execute(self, context):
-        if context.mode == "SCULPT":
-            # The default behavior works just fine for sculpt mode.
+        if context.mode in ["SCULPT", "PAINT_WEIGHT", "PAINT_VERTEX", "PAINT_TEXTURE"]:
+            # The default behavior works just fine for some modes.
             bpy.ops.view3d.view_selected()
 
         else:
@@ -52,8 +52,8 @@ class VIEW3D_OT_focus_alt(bpy.types.Operator):
     _diff_step = None
 
     def execute(self, context):
-        if context.mode == "SCULPT":
-            # The default behavior works just fine for sculpt mode.
+        if context.mode in ["SCULPT", "PAINT_WEIGHT", "PAINT_VERTEX", "PAINT_TEXTURE"]:
+            # The default behavior works just fine for some modes.
             bpy.ops.view3d.view_selected()
 
         else:
